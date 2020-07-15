@@ -1,7 +1,13 @@
 import { FileSystemWallet, Gateway } from 'fabric-network';
 import * as path from 'path';
 
-async function main() {
+var bodyParse = require('body-parser');
+var express = require('express');
+
+var app = express()
+app.use(bodyParse.json())
+
+app.get('/api/queryallcars/:id', async function (req: any, res: any) {
     try {
 
         // Create a new file system based wallet for managing identities.
@@ -21,23 +27,18 @@ async function main() {
         // Get the contract from the network.
         const contract = network.getContract('demo-contract');
 
-        let element = {
-            test: "data",
-            other: "info",
-            even: "more", 
-            broken: "pieces"
-        }
-
-        // Submit the specified transaction.
-        await contract.submitTransaction('createMyAsset', '003', JSON.stringify(element));
-        console.log(`Transaction has been submitted`);
-
-        // Disconnect from the gateway.
-        await gateway.disconnect();
+        // Evaluate the specified transaction.
+        // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
+        // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
+        const result = await contract.evaluateTransaction('readMyAsset', req.params.id);
+        console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
+        res.status(200).json({response: result.toString()});
 
     } catch (error) {
-        console.error(`Failed to submit transaction: ${error}`);
+        console.error(`Failed to evaluate transaction: ${error}`);
+        res.status(500).json({error: error});
         process.exit(1);
     }
-}
-main();
+});
+
+app.listen(8080);

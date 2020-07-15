@@ -19,12 +19,14 @@
     "start": "node ./dist/create.js",
     "create": "node ./dist/create.js",
     "query": "node ./dist/query.js",
+    "serv": "node ./dist/serv.js",
     "listener": "node ./dist/listener.js"
   },
   "engineStrict": true,
   "author": "Hyperledger",
   "license": "Apache-2.0",
   "dependencies": {
+    "express": "^4.17.1",
     "fabric-network": "~1.4.0"
   },
   "devDependencies": {
