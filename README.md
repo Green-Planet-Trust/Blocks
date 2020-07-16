@@ -1,6 +1,8 @@
 # Blocks
  Here lives the blockchain!
  
+# **IBM Blockchain Platform**
+  
 # Intent
 The goal for this blockchain was to develop locally and then push to `IBM Blockchain Platform` but due to restrictions of accounts, we were unable to make that shift. Moving the blockchain to the cloud would allow actual specific wallets to be given to individual users and smart contracts to be jointly verified before being added to the shared ledger. 
 
@@ -33,6 +35,11 @@ The goal for this blockchain was to develop locally and then push to `IBM Blockc
 - `Blocks/demo-contract/src/my-asset-contract.ts`: This is where the smart contracts are defined. **Note About Changing Below**
 - `Blocks/demo-contract/package.json`: This file **must** be updated when the contracts are changing, the `version` must be incremented!
 
+# Members
+- Ariel Uy 
+- Christopher Shortell
+- Daniel Rodriguez 
+- Jacob Engelbrecht 
 # How to test
 - The simpliest way to test is to use the IBM Blockchain extension and right-click on a contract and Evaluate (if just reading data) or Submitting (if you are changing data) a request to process. 
    -Leave `optional args` empty 
